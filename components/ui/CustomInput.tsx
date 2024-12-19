@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { FormControl, FormField, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Control, Form } from "react-hook-form";
+import { Control } from "react-hook-form";
+import { authFormSchema } from "@/lib/utils";
+import { z } from "zod";
 
 interface CustomInput {
-  control: Control;
+  control: Control<z.infer<typeof authFormSchema>>;
   name: string;
   label: string;
   placeholder: string;
