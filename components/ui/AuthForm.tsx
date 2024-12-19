@@ -14,7 +14,7 @@ import { Loader2 } from "lucide-react";
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof authFormSchema>>({
@@ -88,7 +88,7 @@ const AuthForm = ({ type }: { type: string }) => {
                   <>
                     <Loader2
                       size={20}
-                      className="animated-spin"
+                      className="animate-spin"
                     />
                     &nbsp; Loading...
                   </>
