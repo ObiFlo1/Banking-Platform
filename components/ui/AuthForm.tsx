@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Divide } from "lucide-react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -58,7 +59,34 @@ const AuthForm = ({ type }: { type: string }) => {
           </h1>
         </div>
       </header>
-      {user ? <div className="flex flex-col gap-4">{/*PlaidLink*/}</div> : <> FORM</>}
+      {user ? (
+        <div className="flex flex-col gap-4">{/*PlaidLink*/}</div>
+      ) : (
+        <>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8"
+            >
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <div className="form-item">
+                    <FormLabel className="form-label">Email</FormLabel>
+                    <div className="flex w-full flex-col">
+                      <FormControl>
+                        <Input placeholder="Enter your email" />
+                      </FormControl>
+                    </div>
+                  </div>
+                )}
+              />
+              <Button type="submit">Submit</Button>
+            </form>
+          </Form>
+        </>
+      )}
     </section>
   );
 };
