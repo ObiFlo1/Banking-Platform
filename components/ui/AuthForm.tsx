@@ -67,6 +67,17 @@ const AuthForm = ({ type }: { type: string }) => {
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-8"
             >
+              {" "}
+              {type === "sign-up" && (
+                <>
+                  <CustomInput
+                    control={form.control}
+                    name="email"
+                    label="Email"
+                    placeholder="Enter your email"
+                  />
+                </>
+              )}
               <CustomInput
                 control={form.control}
                 name="email"
@@ -79,26 +90,27 @@ const AuthForm = ({ type }: { type: string }) => {
                 label="Password"
                 placeholder="Enter your password"
               />
-
-              <Button
-                type="submit"
-                className="form-btn"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2
-                      size={20}
-                      className="animate-spin"
-                    />
-                    &nbsp; Loading...
-                  </>
-                ) : type === "sign-in" ? (
-                  "Sign In"
-                ) : (
-                  "Sign Up"
-                )}
-              </Button>
+              <div className="flex flex-col gap-4">
+                <Button
+                  type="submit"
+                  className="form-btn"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2
+                        size={20}
+                        className="animate-spin"
+                      />
+                      &nbsp; Loading...
+                    </>
+                  ) : type === "sign-in" ? (
+                    "Sign In"
+                  ) : (
+                    "Sign Up"
+                  )}
+                </Button>
+              </div>
             </form>
           </Form>
 
