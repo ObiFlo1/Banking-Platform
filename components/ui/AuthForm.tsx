@@ -14,7 +14,7 @@ import { Loader2 } from "lucide-react";
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof authFormSchema>>({
@@ -83,6 +83,7 @@ const AuthForm = ({ type }: { type: string }) => {
               <Button
                 type="submit"
                 className="form-btn"
+                disabled={isLoading}
               >
                 {isLoading ? (
                   <>
@@ -100,6 +101,13 @@ const AuthForm = ({ type }: { type: string }) => {
               </Button>
             </form>
           </Form>
+
+          <footer className="flex justify-center gap-1">
+            <p>{type === "sign-in" ? "Don't have an account?" : "Already have an account?"}</p>
+            <Link href={type === "sign-in" ? "/sign-up" : "/sign-in"}>
+              {type === "sign-in" ? "Sign Up" : "Sign In"}
+            </Link>
+          </footer>
         </>
       )}
     </section>
