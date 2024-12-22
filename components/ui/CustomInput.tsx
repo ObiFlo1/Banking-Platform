@@ -6,9 +6,12 @@ import { Control, FieldPath } from "react-hook-form";
 import { authFormSchema } from "@/lib/utils";
 import { z } from "zod";
 
+//Added this line below because of the changes we made in AuthForm. it was bc we added a type:string to utlis.ts
+const formSchema = authFormSchema("sign-up");
+
 interface CustomInput {
-  control: Control<z.infer<typeof authFormSchema>>;
-  name: FieldPath<z.infer<typeof authFormSchema>>;
+  control: Control<z.infer<typeof formSchema>>;
+  name: FieldPath<z.infer<typeof formSchema>>;
   label: string;
   placeholder: string;
 }
