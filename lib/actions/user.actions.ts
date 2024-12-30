@@ -9,12 +9,22 @@ export const signIn = async ({ email, password }: signInProps) => {
   try {
     //what we can do here: Mutation/Database/Make fetch request/
     const { account } = await createAdminClient();
-
     const response = await account.createEmailPasswordSession(email, password);
+
+    console.log("session response:", response); // log the reponse for inspection
+
+    //set the session coockie
+    (await cookies()).set("appwrite-session", response.secret, {
+      path: "/", // make it available to all routes
+      httpOnly: true, //Prevent client-side JS access
+      sameSite: "strict", // prevent cross-site attacks
+      secure: true, /// use only over HTTPS
+    });
+    console.log("Session coockie set successfuly");
 
     return parseStringify(response);
   } catch (error) {
-    console.error("error");
+    console.error("Error during sign-in", error); // log the error if any
   }
 };
 
