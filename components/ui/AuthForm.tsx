@@ -34,6 +34,7 @@ const AuthForm = ({ type }: { type: string }) => {
   // we are going to convert this into an arrow function to submit it to something else and not just console log it
   // we're going to make it async
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    console.log("Form Data submitted:", data); //log form data real quick
     setIsLoading(true);
     // we wanna do something asyncyrously. we wanna submit the data to a database
     try {
